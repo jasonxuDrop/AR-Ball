@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public float forceStrength = 50f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	Rigidbody rb;
+
+	private void Start() {
+		rb = GetComponent<Rigidbody>();
+	}
+
+	public void Move(Vector2 force) {
+		Vector3 finalForce = forceStrength * new Vector3(force.x, 0, force.y);
+		// using ForceMode.VelocityChange to ignore mass
+		// for calculations: https://answers.unity.com/questions/696068/difference-between-forcemodeforceaccelerationimpul.html
+		rb.AddForce(finalForce, ForceMode.VelocityChange);
+	}
 }

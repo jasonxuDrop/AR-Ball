@@ -655,6 +655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPlacementController: {fileID: 2106696756}
   levelToInstantiate: {fileID: 3536303376876616658, guid: bd0ce6daea4e9ab489e3822a24e8d102, type: 3}
+  playerController: {fileID: 669964921}
   debugText: {fileID: 2036479308}
 --- !u!4 &669964920
 Transform:
@@ -683,6 +684,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 113960166}
+  cameraTransform: {fileID: 39947771}
+  playerMotor: {fileID: 0}
+  cancelMaxDistanceSqr: 0.25
   debugText: {fileID: 2036479308}
 --- !u!1 &1064125007
 GameObject:

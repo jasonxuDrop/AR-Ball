@@ -10,18 +10,18 @@ public class ARObjectPlacementController : MonoBehaviour
 
     static List<ARRaycastHit> Hits = new List<ARRaycastHit>();
 
-    public bool PlaceObjectScreenCenter(GameObject objectToPlace) {
+    public GameObject PlaceObjectScreenCenter(GameObject objectToPlace) {
         var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(.5f, .5f));
 
         if (RaycastManager.Raycast(screenCenter, Hits)) {
             Pose hitPose = Hits[0].pose;
 
-            Instantiate(objectToPlace, hitPose.position, hitPose.rotation);
+            GameObject levelInstance =  Instantiate(objectToPlace, hitPose.position, hitPose.rotation);
+
+            return levelInstance;
         }
         else {
-            return false;
+            return null;
 		}
-
-        return true;
     }
 }
