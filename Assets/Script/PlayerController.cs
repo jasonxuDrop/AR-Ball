@@ -65,15 +65,16 @@ public class PlayerController : MonoBehaviour
 
 			// make the direction of movement relative to the camera 
 			moveForce3d = Camera.main.transform.TransformDirection(moveForce3d);
-			Debug.Log("Move Force (relative to camera): " + moveForce3d);
-
 
 			// flatten the movement to x and z axis only
 			moveForce3d.y = 0;
 
 			// normalize movement
 			moveForce3d.Normalize();
-			Debug.Log("Move Force (flat and normalized): " + moveForce3d);
+
+			// scale movement
+			moveForce3d *= lastInput.SqrMagnitude();
+			Debug.Log("Move Force (flat and scaled): " + moveForce3d);
 
 
 			if (doRelease) {
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
 			}
 
 			if (predictionManager) {
-				predictionManager.predict(playerMotor.gameObject, playerMotor.transform.position, moveForce3d);
+				predictionManager.Predict(playerMotor.gameObject, playerMotor.transform.position, moveForce3d);
 			}
 			Debug.DrawRay(playerMotor.transform.position, moveForce3d * 20, Color.red);
 

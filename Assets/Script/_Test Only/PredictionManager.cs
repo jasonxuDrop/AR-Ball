@@ -8,6 +8,8 @@ public class PredictionManager : MonoBehaviour
     public int maxIterations = 100;
     public int steps = 1;
     public LineRenderer lineRenderer;
+    public float lineYOffset;
+    public Transform level;
 
     Scene currentScene;
     Scene predictionScene;
@@ -15,9 +17,10 @@ public class PredictionManager : MonoBehaviour
     PhysicsScene currentPhysicsScene;
     PhysicsScene predictionPhysicsScene;
 
+    List<GameObject> similuatedObstacles = new List<GameObject>();
     GameObject similuatedObject;
 
-    private void Start() {
+    private void Awake() {
         Physics.autoSimulation = false;
 
         currentScene = SceneManager.GetActiveScene();
@@ -28,13 +31,31 @@ public class PredictionManager : MonoBehaviour
         predictionPhysicsScene = predictionScene.GetPhysicsScene();
     }
 
-	private void FixedUpdate() {
+
+    public void UpdateLevel() {
+        foreach (Transform t in level.transform) {
+            if (t.gameObject.GetComponent<Collider>() != null) {
+                GameObject simT = Instantiate(t.gameObject);
+                simT.transform.position = t.position;
+                simT.transform.rotation = t.rotation;
+                Renderer simR = simT.GetComponent<Renderer>();
+                if (simR) {
+                    simR.enabled = false;
+                }
+                SceneManager.MoveGameObjectToScene(simT, predictionScene);
+                similuatedObstacles.Add(simT);
+            }
+        }
+    }
+
+
+    private void FixedUpdate() {
 		if(currentPhysicsScene.IsValid()) {
             currentPhysicsScene.Simulate(Time.fixedDeltaTime);
 		}
 	}
 
-    public void predict(GameObject subject, Vector3 currentPosition, Vector3 force) {
+    public void Predict(GameObject subject, Vector3 currentPosition, Vector3 force) {
         if (currentPhysicsScene.IsValid() && predictionPhysicsScene.IsValid()) {
             if (similuatedObject == null) {
                 similuatedObject = Instantiate(subject);
@@ -49,7 +70,9 @@ public class PredictionManager : MonoBehaviour
 
             for (int i = 0; i < maxIterations; i++) {
                 predictionPhysicsScene.Simulate(Time.fixedDeltaTime * steps);
-                lineRenderer.SetPosition(i, similuatedObject.transform.position);
+                Vector3 simPosition = similuatedObject.transform.position;
+                simPosition.y += lineYOffset;
+                lineRenderer.SetPosition(i, simPosition);
             }
 
             Destroy(similuatedObject);
