@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 	[HideInInspector]
 	public PlayerMotor playerMotor;
 
+	PredictionManager predictionManager;
+
 	[Header("Debug")]
 	public OnScreenTextDebugger debugText;
 
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
 		if (!debugText) {
 			debugText = FindObjectOfType<OnScreenTextDebugger>();
 		}
+		
+		predictionManager = GetComponent<PredictionManager>();
 	}
 
 	private void Update() {
@@ -55,30 +59,6 @@ public class PlayerController : MonoBehaviour
 				!(Mathf.Abs(lastInput.SqrMagnitude()) < cancelMaxDistanceSqr));
 
 
-			/// OBSOLETE WAY OF MOVING PLAYER
-
-			//Vector2 normalMoveForce = new Vector2(lastInput.x, lastInput.y);
-
-			//// Find camera Angle forward from camera
-			//float deltaX = cameraTransform.position.x - playerMotor.transform.position.x;
-			//float deltaZ = cameraTransform.position.z - playerMotor.transform.position.z;
-			//float cameraAngleRad = Mathf.Atan2(deltaZ, deltaX) + 1.571f;
-
-			//Debug.Log("camera forward " + cameraTransform.forward);
-
-			////adjust input to camera angle
-			//float sin = Mathf.Sin(cameraAngleRad);
-			//float cos = Mathf.Cos(cameraAngleRad);
-
-			//float tx = normalMoveForce.x;
-			//float tz = normalMoveForce.y;
-			//normalMoveForce.x = (cos * tx) - (sin * tz);
-			//normalMoveForce.y = (sin * tx) + (cos * tz);
-
-			//normalMoveForce = -normalMoveForce;
-
-			//Debug.DrawRay(playerMotor.transform.position, normalMoveForce * 20, Color.red);
-
 			// NEW WAY OF MOVING PLAYER
 			// generate a vector 2 from input. 
 			Vector3 moveForce3d = new Vector3(lastInput.x, highAngleProtection, lastInput.y);
@@ -104,6 +84,9 @@ public class PlayerController : MonoBehaviour
 				doRelease = false;
 			}
 
+			if (predictionManager) {
+				predictionManager.predict(playerMotor.gameObject, playerMotor.transform.position, moveForce3d);
+			}
 			Debug.DrawRay(playerMotor.transform.position, moveForce3d * 20, Color.red);
 
 
