@@ -12,10 +12,14 @@ public class PlayerMotor : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 	}
 
-	public void Move(Vector2 force) {
-		Vector3 finalForce = forceStrength * new Vector3(force.x, 0, force.y);
-		// using ForceMode.VelocityChange to ignore mass
-		// for calculations: https://answers.unity.com/questions/696068/difference-between-forcemodeforceaccelerationimpul.html
-		rb.AddForce(finalForce, ForceMode.VelocityChange);
+	//public void Move(Vector2 force) {
+	//	Vector3 finalForce = forceStrength * new Vector3(force.x, 0, force.y);
+	//	// using ForceMode.VelocityChange to ignore mass
+	//	// for calculations: https://answers.unity.com/questions/696068/difference-between-forcemodeforceaccelerationimpul.html
+	//	rb.AddForce(finalForce, ForceMode.VelocityChange);
+	//}
+
+	public void Move(Vector3 force) {
+		rb.AddForce(force, ForceMode.VelocityChange);
 	}
 }

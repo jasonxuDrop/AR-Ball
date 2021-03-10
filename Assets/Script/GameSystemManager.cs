@@ -12,12 +12,16 @@ public class GameSystemManager : MonoBehaviour
 
 	[Header("Debug")]
 	public OnScreenTextDebugger debugText;
+	public Level computerTestLevel;
 
 	bool levelPlaced = false;
 
 	private void Start() {
 		if (!debugText) {
 			debugText = FindObjectOfType<OnScreenTextDebugger>();
+		}
+		if (computerTestLevel) {
+			playerController.playerMotor = computerTestLevel.playerMotor;
 		}
 	}
 
@@ -43,7 +47,12 @@ public class GameSystemManager : MonoBehaviour
 	#region Unity Event References
 
 	public void PlaceLevelButtonPressed() {
-		PlaceLevel();
+		if (objectPlacementController) {
+			PlaceLevel();
+		}
+		else {
+			Debug.Log("objectPlacementController not found");
+		}
 	}
 
 	#endregion
