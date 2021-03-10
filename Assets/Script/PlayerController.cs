@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 			Vector3 moveForce3d = new Vector3(lastInput.x, highAngleProtection, lastInput.y);
 
 			// make the direction of movement relative to the camera 
-			moveForce3d = Camera.main.transform.TransformDirection(moveForce3d);
+			moveForce3d = cameraTransform.TransformDirection(moveForce3d);
 
 			// flatten the movement to x and z axis only
 			moveForce3d.y = 0;

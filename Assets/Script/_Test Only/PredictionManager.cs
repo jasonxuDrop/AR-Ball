@@ -9,7 +9,8 @@ public class PredictionManager : MonoBehaviour
     public int steps = 1;
     public LineRenderer lineRenderer;
     public float lineYOffset;
-    public Transform level;
+
+    [HideInInspector] public Transform level;
 
     Scene currentScene;
     Scene predictionScene;
@@ -29,6 +30,8 @@ public class PredictionManager : MonoBehaviour
         CreateSceneParameters parameters = new CreateSceneParameters(LocalPhysicsMode.Physics3D);
         predictionScene = SceneManager.CreateScene("Prediction", parameters);
         predictionPhysicsScene = predictionScene.GetPhysicsScene();
+
+        lineRenderer.positionCount = 0;
     }
 
 
@@ -69,7 +72,8 @@ public class PredictionManager : MonoBehaviour
 
 
             for (int i = 0; i < maxIterations; i++) {
-                predictionPhysicsScene.Simulate(Time.fixedDeltaTime * steps);
+                if (i>0) 
+                    predictionPhysicsScene.Simulate(Time.fixedDeltaTime * steps);
                 Vector3 simPosition = similuatedObject.transform.position;
                 simPosition.y += lineYOffset;
                 lineRenderer.SetPosition(i, simPosition);
