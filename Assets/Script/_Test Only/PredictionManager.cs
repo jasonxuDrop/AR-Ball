@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PredictionManager : MonoBehaviour
 {
     public int maxIterations = 100;
-    public int steps = 1;
+    public float steps = 0.025f;
     public LineRenderer lineRenderer;
     public float lineYOffset;
 
@@ -37,6 +37,9 @@ public class PredictionManager : MonoBehaviour
 
     public void UpdateLevel() {
         foreach (Transform t in level.transform) {
+            if (t.GetComponent<PlayerMotor>())
+                continue;
+
             if (t.gameObject.GetComponent<Collider>() != null) {
                 GameObject simT = Instantiate(t.gameObject);
                 simT.transform.position = t.position;
@@ -62,18 +65,24 @@ public class PredictionManager : MonoBehaviour
         if (currentPhysicsScene.IsValid() && predictionPhysicsScene.IsValid()) {
             if (similuatedObject == null) {
                 similuatedObject = Instantiate(subject);
+                similuatedObject.GetComponent<Collider>().material = null;
                 SceneManager.MoveGameObjectToScene(similuatedObject, predictionScene);
             }
 
             similuatedObject.transform.position = currentPosition;
-            similuatedObject.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+            similuatedObject.GetComponent<PlayerMotor>().Move(force*3);
             lineRenderer.positionCount = 0;
             lineRenderer.positionCount = maxIterations;
 
 
             for (int i = 0; i < maxIterations; i++) {
-                if (i>0) 
-                    predictionPhysicsScene.Simulate(Time.fixedDeltaTime * steps);
+                if (i>0) {
+                    predictionPhysicsScene.Simulate(steps);
+					if(similuatedObject.GetComponent<PlayerMotor>().breakSimulation) {
+                        lineRenderer.positionCount = i;
+                        break;
+					}
+				}
                 Vector3 simPosition = similuatedObject.transform.position;
                 simPosition.y += lineYOffset;
                 lineRenderer.SetPosition(i, simPosition);

@@ -5,6 +5,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+	public float forceStrength = 1f;
+
 	[Range(0f, 1f)]
 	public float cancelMaxDistanceSqr = 0.25f;
 	public float highAngleProtection = 0.1f;
@@ -74,8 +76,10 @@ public class PlayerController : MonoBehaviour
 
 			// scale movement
 			moveForce3d *= lastInput.SqrMagnitude();
-			Debug.Log("Move Force (flat and scaled): " + moveForce3d);
+			//Debug.Log("Move Force (flat and scaled): " + moveForce3d);
 
+			// scale movement to force amount
+			moveForce3d *= forceStrength;
 
 			if (doRelease) {
 				Debug.Log("doRelease");

@@ -91,7 +91,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3536303375350663882}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 29c9a85bbf0ebee40944252190c6af57, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -125,7 +125,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61300ed81797f0749acce068c6492dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceStrength: 2.5
+  speedDownCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0.005557494
+      outSlope: -0.005557494
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5860192
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.403875
+      outSlope: -4.403875
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.071766615
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speedDownDuration: 5
 --- !u!1 &3536303376208165104
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +173,7 @@ GameObject:
   - component: {fileID: 3536303376208165105}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,7 +248,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3536303376208165104}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -235,7 +268,7 @@ GameObject:
   - component: {fileID: 3536303376691887057}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,7 +343,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3536303376691887056}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -405,7 +438,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3536303376859136409}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c45cac12fbf5bb1459d67a3ab57bd2be, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -476,7 +509,7 @@ GameObject:
   - component: {fileID: 3536303377016608880}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -551,7 +584,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3536303377016608887}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -571,7 +604,7 @@ GameObject:
   - component: {fileID: 3536303377293617587}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -646,7 +679,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3536303377293617586}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
