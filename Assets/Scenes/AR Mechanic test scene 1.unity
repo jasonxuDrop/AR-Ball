@@ -685,6 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dccccf4e3c71e4042880483f4a125c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceStrength: 1
   cancelMaxDistanceSqr: 0.25
   highAngleProtection: 0.1
   cameraTransform: {fileID: 39947771}
@@ -704,9 +705,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxIterations: 100
-  steps: 5
+  steps: 0.025
   lineRenderer: {fileID: 1725595157}
-  lineYOffset: 0.03
+  lineYOffset: 0
   level: {fileID: 0}
 --- !u!1 &1064125007
 GameObject:

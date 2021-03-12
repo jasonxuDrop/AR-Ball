@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 	public OnScreenTextDebugger debugText;
 
 	Vector2 lastInput;
+	Vector3 lastCameraPosition;
 
 	private void Start() {
 		if (!debugText) {
@@ -98,7 +99,8 @@ public class PlayerController : MonoBehaviour
 			// else hide renderer
 			if (predictionManager
 				&& (inputHorizontal != 0 || inputVertical != 0)
-				&& (inputHorizontal != lastInput.x || inputVertical != lastInput.y)) {
+				&& ((inputHorizontal != lastInput.x || inputVertical != lastInput.y)
+					|| (Vector3.SqrMagnitude(lastCameraPosition - cameraTransform.position) < 0.001f)) ) {
 				predictionManager.Predict(playerMotor.gameObject, playerMotor.transform.position, moveForce3d);
 			}
 			if (doRelease) {
@@ -108,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
 
 			lastInput = new Vector2(inputHorizontal, inputVertical);
-
+			lastCameraPosition = cameraTransform.position;
 		}
 	}
 }

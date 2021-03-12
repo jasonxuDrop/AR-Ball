@@ -108,7 +108,7 @@ Rigidbody:
   m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61300ed81797f0749acce068c6492dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityScale: 0.1
   speedDownCurve:
     serializedVersion: 2
     m_Curve:
@@ -138,22 +139,31 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: -0.005557494
-      outSlope: -0.005557494
+      time: 0.7985009
+      value: 0.95156413
+      inSlope: -0.11831856
+      outSlope: -0.11831856
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.5860192
+      inWeight: 0.08205616
+      outWeight: 0.49247232
+    - serializedVersion: 3
+      time: 0.9238972
+      value: 0.7927839
+      inSlope: -2.3161602
+      outSlope: -2.3161602
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.29120106
+      outWeight: 0.563674
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -4.403875
-      outSlope: -4.403875
-      tangentMode: 0
+      inSlope: -10.417277
+      outSlope: -10.417277
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.071766615
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
