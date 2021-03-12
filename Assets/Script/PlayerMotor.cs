@@ -8,7 +8,6 @@ public class PlayerMotor : MonoBehaviour
 	public AnimationCurve speedDownCurve;
 	public float speedDownDuration;
 
-
 	float timeSinceMoved = -1f;
 
 	bool updateVelocity;
@@ -30,13 +29,22 @@ public class PlayerMotor : MonoBehaviour
 	//	rb.AddForce(finalForce, ForceMode.VelocityChange);
 	//}
 
+	public void Move(Vector3 force) {
+		rb.AddForce(force, ForceMode.VelocityChange);
+		timeSinceMoved = 0;
+	}
+
+	public bool HasStoppedMoving() {
+		return (timeSinceMoved < 0					// reached 5 seconds
+			|| rb.velocity.sqrMagnitude < 0.003f);	// basically not moving
+	}
 
 	public void FixedUpdate() {
 		if (timeSinceMoved > speedDownDuration) {
 			timeSinceMoved = -1f;
 			rb.velocity *= 0;
 		}
-		else {
+		else if (timeSinceMoved >= 0) {
 			float dampFactor = speedDownCurve.Evaluate(timeSinceMoved / speedDownDuration);
 			rb.velocity *= dampFactor;
 			timeSinceMoved += Time.fixedDeltaTime;
@@ -47,19 +55,10 @@ public class PlayerMotor : MonoBehaviour
 
 		// *late* update to change velocity
 		if (updateVelocity) {
-			print("bouncing velocity from "+rb.velocity.ToString("F2") + " to " + toVelocity.ToString("F2"));
+			//print("bouncing velocity from "+rb.velocity.ToString("F2") + " to " + toVelocity.ToString("F2"));
 			rb.velocity = toVelocity;
 			updateVelocity = false;
 		}
-	}
-
-	private void Update() {
-		
-	}
-
-	public void Move(Vector3 force) {
-		rb.AddForce(force, ForceMode.VelocityChange);
-		timeSinceMoved = 0;
 	}
 
 	private void OnCollisionEnter(Collision collision) {

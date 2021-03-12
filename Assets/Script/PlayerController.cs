@@ -46,9 +46,15 @@ public class PlayerController : MonoBehaviour
 
 	public void InputUpdate() {
 
-		if (playerMotor) {
+		bool canMovePlayer = (playerMotor && playerMotor.HasStoppedMoving());
+		if (!canMovePlayer) {
+			print(playerMotor.HasStoppedMoving());
+			return;
+		}
 
-			//Debug.Log("player motor found");
+		Vector3 moveForce3d;
+
+		if (playerMotor) {
 
 			float inputHorizontal = joystick.Horizontal;
 			float inputVertical = joystick.Vertical;
@@ -63,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
 			// NEW WAY OF MOVING PLAYER
 			// generate a vector 2 from input. 
-			Vector3 moveForce3d = new Vector3(lastInput.x, highAngleProtection, lastInput.y);
+			moveForce3d = new Vector3(-lastInput.x, highAngleProtection, -lastInput.y);
 
 			// make the direction of movement relative to the camera 
 			moveForce3d = cameraTransform.TransformDirection(moveForce3d);
@@ -85,12 +91,18 @@ public class PlayerController : MonoBehaviour
 				Debug.Log("doRelease");
 
 				playerMotor.Move(moveForce3d);
-
-				doRelease = false;
 			}
 
-			if (predictionManager) {
+
+			// if input change, render line
+			// else hide renderer
+			if (predictionManager
+				&& (inputHorizontal != 0 || inputVertical != 0)
+				&& (inputHorizontal != lastInput.x || inputVertical != lastInput.y)) {
 				predictionManager.Predict(playerMotor.gameObject, playerMotor.transform.position, moveForce3d);
+			}
+			if (doRelease) {
+				predictionManager.ClearPrediction();
 			}
 			Debug.DrawRay(playerMotor.transform.position, moveForce3d * 20, Color.red);
 

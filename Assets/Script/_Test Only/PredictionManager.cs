@@ -70,7 +70,7 @@ public class PredictionManager : MonoBehaviour
             }
 
             similuatedObject.transform.position = currentPosition;
-            similuatedObject.GetComponent<PlayerMotor>().Move(force*3);
+            similuatedObject.GetComponent<PlayerMotor>().Move(force*2.5f);
             lineRenderer.positionCount = 0;
             lineRenderer.positionCount = maxIterations;
 
@@ -90,5 +90,9 @@ public class PredictionManager : MonoBehaviour
 
             Destroy(similuatedObject);
         }
+    }
+
+    public void ClearPrediction() {
+        lineRenderer.positionCount = 0;
     }
 }
