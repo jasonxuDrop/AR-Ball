@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
 	Rigidbody rb;
+	public float gravityScale = 1f;
 	public AnimationCurve speedDownCurve;
 	public float speedDownDuration;
 
@@ -40,6 +41,10 @@ public class PlayerMotor : MonoBehaviour
 	}
 
 	public void FixedUpdate() {
+		// custome gravity
+		ApplyGravity();
+
+		// eventrual full stop
 		if (timeSinceMoved > speedDownDuration) {
 			timeSinceMoved = -1f;
 			rb.velocity *= 0;
@@ -72,5 +77,10 @@ public class PlayerMotor : MonoBehaviour
 			toVelocity = Vector3.Reflect(rb.velocity, contact.normal);
 			updateVelocity = true;
 		}
+	}
+
+	public void ApplyGravity() {
+		Vector3 gravity = -9.81f * gravityScale * Vector3.up;
+		rb.AddForce(gravity, ForceMode.Acceleration);
 	}
 }

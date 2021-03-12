@@ -78,7 +78,9 @@ public class PredictionManager : MonoBehaviour
             for (int i = 0; i < maxIterations; i++) {
                 if (i>0) {
                     predictionPhysicsScene.Simulate(steps);
-					if(similuatedObject.GetComponent<PlayerMotor>().breakSimulation) {
+                    similuatedObject.GetComponent<PlayerMotor>().ApplyGravity();
+
+                    if (similuatedObject.GetComponent<PlayerMotor>().breakSimulation) {
                         lineRenderer.positionCount = i;
                         break;
 					}
