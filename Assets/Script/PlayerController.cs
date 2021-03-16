@@ -5,25 +5,34 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    Joystick joystick;
+	public float forceStrength = 1f;
+
+	[Range(0f, 1f)]
+	public float cancelMaxDistanceSqr = 0.25f;
+	public float highAngleProtection = 0.1f;
 
 	public Transform cameraTransform;
+
+	[SerializeField]
+    Joystick joystick;
 
 	[HideInInspector]
 	public PlayerMotor playerMotor;
 
-	[Range(0f, 1f)]
-	public float cancelMaxDistanceSqr = 0.25f;
+	PredictionManager predictionManager;
 
+	[Header("Debug")]
 	public OnScreenTextDebugger debugText;
 
 	Vector2 lastInput;
+	Vector3 lastCameraPosition;
 
 	private void Start() {
 		if (!debugText) {
 			debugText = FindObjectOfType<OnScreenTextDebugger>();
 		}
+		
+		predictionManager = GetComponent<PredictionManager>();
 	}
 
 	private void Update() {
@@ -38,9 +47,15 @@ public class PlayerController : MonoBehaviour
 
 	public void InputUpdate() {
 
-		if (playerMotor) {
+		bool canMovePlayer = (playerMotor && playerMotor.HasStoppedMoving());
+		if (!canMovePlayer) {
+			print(playerMotor.HasStoppedMoving());
+			return;
+		}
 
-			Debug.Log("player motor found");
+		Vector3 moveForce3d;
+
+		if (playerMotor) {
 
 			float inputHorizontal = joystick.Horizontal;
 			float inputVertical = joystick.Vertical;
@@ -53,39 +68,49 @@ public class PlayerController : MonoBehaviour
 				!(Mathf.Abs(lastInput.SqrMagnitude()) < cancelMaxDistanceSqr));
 
 
-			Vector2 normalMoveForce = new Vector2(lastInput.x, lastInput.y);
+			// NEW WAY OF MOVING PLAYER
+			// generate a vector 2 from input. 
+			moveForce3d = new Vector3(-lastInput.x, highAngleProtection, -lastInput.y);
 
-			// Find camera Angle forward from camera
-			float deltaX = cameraTransform.position.x - playerMotor.transform.position.x;
-			float deltaZ = cameraTransform.position.z - playerMotor.transform.position.z;
-			float cameraAngleRad = Mathf.Atan2(deltaZ, deltaX) + 1.571f;
+			// make the direction of movement relative to the camera 
+			moveForce3d = cameraTransform.TransformDirection(moveForce3d);
 
-			//adjust input to camera angle
-			float sin = Mathf.Sin(cameraAngleRad);
-			float cos = Mathf.Cos(cameraAngleRad);
+			// flatten the movement to x and z axis only
+			moveForce3d.y = 0;
 
-			float tx = normalMoveForce.x;
-			float tz = normalMoveForce.y;
-			normalMoveForce.x = (cos * tx) - (sin * tz);
-			normalMoveForce.y = (sin * tx) + (cos * tz);
+			// normalize movement
+			moveForce3d.Normalize();
 
-			normalMoveForce = -normalMoveForce;
+			// scale movement
+			moveForce3d *= lastInput.SqrMagnitude();
+			//Debug.Log("Move Force (flat and scaled): " + moveForce3d);
 
-			Debug.DrawRay(playerMotor.transform.position, normalMoveForce * 20, Color.red);
-
-
+			// scale movement to force amount
+			moveForce3d *= forceStrength;
 
 			if (doRelease) {
 				Debug.Log("doRelease");
 
-				playerMotor.Move(normalMoveForce);
-
-				doRelease = false;
+				playerMotor.Move(moveForce3d);
 			}
 
 
-			lastInput = new Vector2(inputHorizontal, inputVertical);
+			// if input change, render line
+			// else hide renderer
+			if (predictionManager
+				&& (inputHorizontal != 0 || inputVertical != 0)
+				&& ((inputHorizontal != lastInput.x || inputVertical != lastInput.y)
+					|| (Vector3.SqrMagnitude(lastCameraPosition - cameraTransform.position) < 0.001f)) ) {
+				predictionManager.Predict(playerMotor.gameObject, playerMotor.transform.position, moveForce3d);
+			}
+			if (doRelease) {
+				predictionManager.ClearPrediction();
+			}
+			Debug.DrawRay(playerMotor.transform.position, moveForce3d * 20, Color.red);
 
+
+			lastInput = new Vector2(inputHorizontal, inputVertical);
+			lastCameraPosition = cameraTransform.position;
 		}
 	}
 }

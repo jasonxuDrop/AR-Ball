@@ -10,8 +10,11 @@ public class GameSystemManager : MonoBehaviour
 
 	public PlayerController playerController;
 
+	PredictionManager predictionManager;
+
 	[Header("Debug")]
 	public OnScreenTextDebugger debugText;
+	public Level computerTestLevel;
 
 	bool levelPlaced = false;
 
@@ -19,6 +22,10 @@ public class GameSystemManager : MonoBehaviour
 		if (!debugText) {
 			debugText = FindObjectOfType<OnScreenTextDebugger>();
 		}
+		if (computerTestLevel) {
+			InitLevel(computerTestLevel);
+		}
+		
 	}
 
 
@@ -36,14 +43,39 @@ public class GameSystemManager : MonoBehaviour
 			levelPlaced = true;
 
 			Level levelManager = levelInstance.GetComponent<Level>();
+			InitLevel(levelManager);
+		}
+	}
+
+
+	private void InitLevel(Level levelManager) {
+
+		if (levelManager) {
 			playerController.playerMotor = levelManager.playerMotor;
+		}
+
+		// setup prediction manager
+		if (!predictionManager) {
+			predictionManager = GetComponent<PredictionManager>();
+			if (predictionManager) {
+				predictionManager.level = levelManager.transform;
+				predictionManager.UpdateLevel();
+			}
+			else {
+				Debug.LogError("no prediction manager found");
+			}
 		}
 	}
 
 	#region Unity Event References
 
 	public void PlaceLevelButtonPressed() {
-		PlaceLevel();
+		if (objectPlacementController) {
+			PlaceLevel();
+		}
+		else {
+			Debug.Log("objectPlacementController not found");
+		}
 	}
 
 	#endregion

@@ -16,7 +16,7 @@ public class OnScreenTextDebugger : MonoBehaviour
     void LateUpdate()
     {
         debugText.text = log;
-        Debug.Log(log);
+        //Debug.Log(log);
 
         log = "";
     }
