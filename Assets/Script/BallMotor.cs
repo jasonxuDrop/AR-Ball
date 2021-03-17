@@ -19,6 +19,11 @@ public class BallMotor : MonoBehaviour
 			rb = GetComponent<Rigidbody>();
 		}
 	}
+	private void Update() {
+		if (!rb) {
+			rb = GetComponent<Rigidbody>();
+		}
+	}
 
 	public virtual void Move(Vector3 force) {
 		rb.AddForce(force, ForceMode.VelocityChange);

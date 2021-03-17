@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61300ed81797f0749acce068c6492dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 0.1
+  gravityScale: 0.15
   speedDownCurve:
     serializedVersion: 2
     m_Curve:
@@ -183,5 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5036646638a333648907661678ebd5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerBall: 0
   hitPoint: 3
   respawnDelay: 3

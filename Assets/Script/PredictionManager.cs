@@ -9,6 +9,7 @@ public class PredictionManager : MonoBehaviour
     public float steps = 0.025f;
     public LineRenderer lineRenderer;
     public float lineYOffset;
+    public float similuatedBallScale = .85f;
 
     [HideInInspector] public Transform level;
 
@@ -60,6 +61,7 @@ public class PredictionManager : MonoBehaviour
 
                 simT.transform.position = t.position;
                 simT.transform.rotation = t.rotation;
+                simT.transform.localScale = t.lossyScale;
                 Renderer simR = simT.GetComponent<Renderer>();
                 if (simR) {
                     simR.enabled = false;
@@ -101,6 +103,7 @@ public class PredictionManager : MonoBehaviour
             }
 
             similuatedObject.transform.position = currentPosition;
+            similuatedObject.transform.localScale *= similuatedBallScale;
             similuatedObject.GetComponent<PlayerMotor>().Move(force*2f);
             lineRenderer.positionCount = 0;
             lineRenderer.positionCount = maxIterations;

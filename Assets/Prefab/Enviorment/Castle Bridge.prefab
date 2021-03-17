@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8741251647852245256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7827616870560166741}
+  - component: {fileID: 4578113506799911090}
+  - component: {fileID: 7259003526631678886}
+  - component: {fileID: 2165459234171448656}
+  - component: {fileID: 4727021707185076212}
+  - component: {fileID: 5919834738971248429}
+  m_Layer: 0
+  m_Name: Castle Bridge
+  m_TagString: Wall
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7827616870560166741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741251647852245256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6956795159535203563}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4578113506799911090
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741251647852245256}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.36312008, y: 0.30836484, z: 0.1446234}
+  m_Center: {x: 0.2972995, y: 0.1508259, z: 0}
+--- !u!65 &7259003526631678886
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741251647852245256}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3562844, y: 0.30836484, z: 0.1446234}
+  m_Center: {x: -0.2630056, y: 0.1508259, z: 0}
+--- !u!65 &2165459234171448656
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741251647852245256}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2608333, y: 0.09999639, z: 0.1446234}
+  m_Center: {x: 0.01829189, y: 0.2550101, z: 0}
+--- !u!136 &4727021707185076212
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741251647852245256}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.09587574
+  m_Height: 0.7714525
+  m_Direction: 1
+  m_Center: {x: 0.4772786, y: 0.2858841, z: 0}
+--- !u!136 &5919834738971248429
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741251647852245256}
+  m_Material: {fileID: 13400000, guid: 427187e4d89ee244a9bcf199ffcd713a, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.09587574
+  m_Height: 0.7714525
+  m_Direction: 1
+  m_Center: {x: -0.445, y: 0.2858841, z: 0}
+--- !u!1001 &7422276520917193472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7827616870560166741}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+      propertyPath: m_Name
+      value: castle-bridge
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+--- !u!4 &6956795159535203563 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 60d0ef95f9f213e4898d2aed6aff7a18, type: 3}
+  m_PrefabInstance: {fileID: 7422276520917193472}
+  m_PrefabAsset: {fileID: 0}
