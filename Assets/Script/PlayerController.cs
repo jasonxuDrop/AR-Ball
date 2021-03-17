@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
 		bool canMovePlayer = (playerMotor && playerMotor.HasStoppedMoving());
 		if (!canMovePlayer) {
-			print(playerMotor.HasStoppedMoving());
+			//print(playerMotor.HasStoppedMoving());
 			return;
 		}
 
@@ -101,13 +101,13 @@ public class PlayerController : MonoBehaviour
 				&& (inputHorizontal != 0 || inputVertical != 0)
 				&& ((inputHorizontal != lastInput.x || inputVertical != lastInput.y)
 					|| (Vector3.SqrMagnitude(lastCameraPosition - cameraTransform.position) < 0.001f)) ) {
-				print("called predict");
+				//print("called predict");
 				predictionManager.Predict(playerMotor.gameObject, playerMotor.transform.position, moveForce3d);
 			}
 			if (doRelease) {
 				predictionManager.ClearPrediction();
 			}
-			Debug.DrawRay(playerMotor.transform.position, moveForce3d * 20, Color.red);
+			Debug.DrawRay(playerMotor.transform.position, moveForce3d * 10, Color.red);
 
 
 			lastInput = new Vector2(inputHorizontal, inputVertical);

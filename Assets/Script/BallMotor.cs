@@ -24,6 +24,13 @@ public class BallMotor : MonoBehaviour
 		rb.AddForce(force, ForceMode.VelocityChange);
 		timeSinceMoved = 0;
 	}
+	public virtual void Move(Vector3 force, float _timeSinceMoved) {
+		rb.AddForce(force, ForceMode.VelocityChange);
+		timeSinceMoved = _timeSinceMoved;
+	}
+	public virtual void SetTimeSinceMoved(float toTime) {
+		timeSinceMoved = toTime;
+	}
 
 	public virtual bool HasStoppedMoving() {
 		return (timeSinceMoved < 0
@@ -44,13 +51,6 @@ public class BallMotor : MonoBehaviour
 			rb.velocity *= dampFactor;
 			timeSinceMoved += Time.fixedDeltaTime;
 		}
-
-		// *late* update to change velocity
-		if (updateVelocity) {
-			//print("bouncing velocity from "+rb.velocity.ToString("F2") + " to " + toVelocity.ToString("F2"));
-			rb.velocity = toVelocity;
-			updateVelocity = false;
-		}
 	}
 
 	protected virtual void OnCollisionEnter(Collision collision) {
@@ -59,7 +59,7 @@ public class BallMotor : MonoBehaviour
 
 			// try to change the velocity directly
 			toVelocity = Vector3.Reflect(rb.velocity, contact.normal);
-			updateVelocity = true;
+			rb.velocity = toVelocity;
 		}
 	}
 

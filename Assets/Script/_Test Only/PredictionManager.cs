@@ -19,6 +19,8 @@ public class PredictionManager : MonoBehaviour
     PhysicsScene predictionPhysicsScene;
 
     List<GameObject> similuatedObstacles = new List<GameObject>();
+    List<GameObject> similuatedDynamicObstacles = new List<GameObject>();
+    List<GameObject> dynamicObstacles = new List<GameObject>();
     GameObject similuatedObject;
 
     private void Awake() {
@@ -42,6 +44,20 @@ public class PredictionManager : MonoBehaviour
 
             if (t.gameObject.GetComponent<Collider>() != null) {
                 GameObject simT = Instantiate(t.gameObject);
+
+                // if is ball, add it to special list
+                BallMotor motor = simT.GetComponent<BallMotor>();
+                if (motor) {
+                    dynamicObstacles.Add(t.gameObject);
+                    similuatedDynamicObstacles.Add(simT);
+
+                    DestroyImmediate(motor);
+                    if (simT.GetComponent<Rigidbody>()) {
+                        DestroyImmediate(simT.GetComponent<Rigidbody>());
+                    }
+				}
+
+
                 simT.transform.position = t.position;
                 simT.transform.rotation = t.rotation;
                 Renderer simR = simT.GetComponent<Renderer>();
@@ -54,6 +70,18 @@ public class PredictionManager : MonoBehaviour
         }
     }
 
+    public void UpdateDynamicObsticles() {
+		for (int i = 0; i < dynamicObstacles.Count; i++) {
+            GameObject originalObj = dynamicObstacles[i];
+            GameObject similuatedObj = similuatedDynamicObstacles[i];
+
+            // TODO: If health is less than 1 then skip destory and stop updating
+
+            similuatedObj.transform.position = originalObj.transform.position;
+            similuatedObj.transform.rotation = originalObj.transform.rotation;
+        }
+    }
+
 
     private void FixedUpdate() {
 		if(currentPhysicsScene.IsValid()) {
@@ -63,6 +91,9 @@ public class PredictionManager : MonoBehaviour
 
     public void Predict(GameObject subject, Vector3 currentPosition, Vector3 force) {
         if (currentPhysicsScene.IsValid() && predictionPhysicsScene.IsValid()) {
+
+            UpdateDynamicObsticles();
+
             if (similuatedObject == null) {
                 similuatedObject = Instantiate(subject);
                 similuatedObject.GetComponent<Collider>().material = null;
@@ -70,7 +101,7 @@ public class PredictionManager : MonoBehaviour
             }
 
             similuatedObject.transform.position = currentPosition;
-            similuatedObject.GetComponent<PlayerMotor>().Move(force*2.5f);
+            similuatedObject.GetComponent<PlayerMotor>().Move(force*2f);
             lineRenderer.positionCount = 0;
             lineRenderer.positionCount = maxIterations;
 

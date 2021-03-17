@@ -14,9 +14,6 @@ public class PlayerMotor : BallMotor
 	//	// for calculations: https://answers.unity.com/questions/696068/difference-between-forcemodeforceaccelerationimpul.html
 	//	rb.AddForce(finalForce, ForceMode.VelocityChange);
 	//}
-	public override void Move(Vector3 force) {
-		base.Move(force);
-	}
 
 	public override void FixedUpdate() {
 		base.FixedUpdate();
@@ -33,7 +30,12 @@ public class PlayerMotor : BallMotor
 		}
 		// if ramming into enemy
 		else if (collision.gameObject.tag == "Enemy") {
-			// TODO: share impact and half the impact
+			breakSimulation = true;
+			//print("hit enemy");
+			BallMotor otherMotor = collision.gameObject.GetComponent<BallMotor>();
+			if (otherMotor) {
+				otherMotor.SetTimeSinceMoved(timeSinceMoved);
+			}
 		}
 	}
 }
