@@ -9,6 +9,7 @@ public class GameSystemManager : MonoBehaviour
     public GameObject levelToInstantiate;
 
 	public PlayerController playerController;
+	public UI_HealthDisplay healthDisplay;
 
 	PredictionManager predictionManager;
 
@@ -40,6 +41,7 @@ public class GameSystemManager : MonoBehaviour
 		GameObject levelInstance =  objectPlacementController.PlaceObjectScreenCenter(levelToInstantiate);
 		
 		if (levelInstance) {
+			Debug.Log("we found it cheif");
 			levelPlaced = true;
 
 			Level levelManager = levelInstance.GetComponent<Level>();
@@ -52,6 +54,8 @@ public class GameSystemManager : MonoBehaviour
 
 		if (levelManager) {
 			playerController.playerMotor = levelManager.playerMotor;
+			if (healthDisplay)
+				healthDisplay.hitPointToTrack = levelManager.playerMotor.GetComponent<HitPoint>();
 		}
 
 		// setup prediction manager

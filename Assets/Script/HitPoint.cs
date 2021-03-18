@@ -42,8 +42,10 @@ public class HitPoint : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.tag == "Trap") {
-			hitPoint-=trapDamage;
-			timeSinceDamageTaken = 0;
+			if (timeSinceDamageTaken < 0) {
+				hitPoint-=trapDamage;
+				timeSinceDamageTaken = 0;
+			}
 		}
 		if (collision.gameObject.tag == "Player") {
 			hitPoint-=playerDamage;

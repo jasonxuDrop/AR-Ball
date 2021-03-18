@@ -43,7 +43,8 @@ public class PredictionManager : MonoBehaviour
             if (t.GetComponent<PlayerMotor>())
                 continue;
 
-            if (t.gameObject.GetComponent<Collider>() != null) {
+            if (t.gameObject.GetComponent<Collider>() != null
+                && t.gameObject.activeInHierarchy) {
                 GameObject simT = Instantiate(t.gameObject);
 
                 // if is ball, add it to special list

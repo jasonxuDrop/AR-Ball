@@ -5,7 +5,7 @@ using TMPro;
 
 public class UI_HealthDisplay : MonoBehaviour
 {
-    public HitPoint hitPointToTrack;
+    [HideInInspector] public HitPoint hitPointToTrack;
 
 	public TMP_Text healthDisplayText;
 
