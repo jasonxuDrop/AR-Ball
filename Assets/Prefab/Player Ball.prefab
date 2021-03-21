@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3079587820863138842}
   - component: {fileID: 4666044828629546708}
   - component: {fileID: 4632739654004096098}
+  - component: {fileID: 4089106740743044622}
   m_Layer: 0
   m_Name: Player Ball
   m_TagString: Player
@@ -186,3 +187,21 @@ MonoBehaviour:
   isPlayerBall: 0
   hitPoint: 3
   respawnDelay: 3
+--- !u!114 &4089106740743044622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5094710612264467912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 0.40000004, g: 0.6666667, b: 0.96470594, a: 0.8}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
