@@ -9,14 +9,18 @@ public class HitPoint : MonoBehaviour
     public int hitPoint;
 	public float respawnDelay;
 
+	[HideInInspector] public int hitPointMax;
 	protected float timeSinceDamageTaken = -1f;
 
     Vector3 respawnLocation;
 
-	// change here to alter the damage taken by thing when hit
-	static int trapDamage = 1;
-	static int playerDamage = 0;
+	// change here to alter the damage taken when hit
+	static int trapDamage = 10;
+	static int playerDamage = 8; // damage on max speed, scaled down linearly to the current player speed
 
+	public float GetHealthRatio() {
+		return (float) hitPoint / (float) hitPointMax;
+	}
 	public bool IsDead() {
 		return (hitPoint <= 0);
 	}
@@ -26,18 +30,20 @@ public class HitPoint : MonoBehaviour
 			transform.position = respawnLocation;
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-			// disable player when hp reaches below zero
-			// TODO: Add restart function 
-			// TODO: Clear level when all enemy die. 
-			if (IsDead()) {
-				gameObject.SetActive(false);
-			}
 
 			timeSinceDamageTaken = -1f;
 		}
 		else if (timeSinceDamageTaken >= 0) {
 			timeSinceDamageTaken += Time.deltaTime;
 		}
+		// disable player when hp reaches below zero
+		if (IsDead()) {
+			// TODO: Use animation to disable instead
+			gameObject.SetActive(false);
+		}
+
+		// TODO: Add restart function 
+		// TODO: Clear level when all enemy die. 
 	}
 
 	private void OnCollisionEnter(Collision collision) {
@@ -48,14 +54,19 @@ public class HitPoint : MonoBehaviour
 			}
 		}
 		if (collision.gameObject.tag == "Player") {
-			hitPoint-=playerDamage;
-		}
+			PlayerMotor motor = collision.gameObject.GetComponent<PlayerMotor>();
 
-		
+			int dmg = Mathf.CeilToInt(playerDamage * motor.GetSpeedRatio());
+
+			Debug.Log("Taken damage " + dmg);
+
+			hitPoint-= dmg;
+		}
 	}
 
 	public void Awake() {
 		respawnLocation = transform.position;
+		hitPointMax = hitPoint;
 	}
 
 	public void SetSpawnLocation(Vector3 newLocation) {

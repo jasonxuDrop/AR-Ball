@@ -10,6 +10,7 @@ public class BallMotor : MonoBehaviour
 	public float speedDownDuration;
 
 	protected float timeSinceMoved = -1f;
+	[HideInInspector] public float maxSpeed;
 
 	protected bool updateVelocity;
 	protected Vector3 toVelocity = new Vector3();
@@ -35,6 +36,9 @@ public class BallMotor : MonoBehaviour
 	}
 	public virtual void SetTimeSinceMoved(float toTime) {
 		timeSinceMoved = toTime;
+	}
+	public float GetSpeedRatio() {
+		return rb.velocity.magnitude / maxSpeed;
 	}
 
 	public virtual bool HasStoppedMoving() {

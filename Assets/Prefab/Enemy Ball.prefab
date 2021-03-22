@@ -171,6 +171,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedDownDuration: 5
+  maxSpeed: 0
 --- !u!114 &8547833751935621808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,8 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerBall: 0
-  hitPoint: 1
+  hitPoint: 10
   respawnDelay: 0
+  hitPointMax: 0
 --- !u!114 &7223391973179810987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 4
   outlineColor: {r: 1, g: 0.4188679, b: 0.44413435, a: 0.8}
   outlineWidth: 2
   precomputeOutline: 0

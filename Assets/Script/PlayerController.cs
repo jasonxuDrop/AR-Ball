@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
 		}
 		
 		predictionManager = GetComponent<PredictionManager>();
+
+		playerMotor.maxSpeed = forceStrength;
 	}
 
 	private void Update() {

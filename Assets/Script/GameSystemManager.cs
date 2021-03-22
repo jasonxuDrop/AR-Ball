@@ -11,6 +11,9 @@ public class GameSystemManager : MonoBehaviour
 	public PlayerController playerController;
 	public UI_HealthDisplay healthDisplay;
 
+	[Header("Prefabs")]
+	public GameObject enemyHitPointUi;
+
 	PredictionManager predictionManager;
 
 	[Header("Debug")]
@@ -41,7 +44,6 @@ public class GameSystemManager : MonoBehaviour
 		GameObject levelInstance =  objectPlacementController.PlaceObjectScreenCenter(levelToInstantiate);
 		
 		if (levelInstance) {
-			Debug.Log("we found it cheif");
 			levelPlaced = true;
 
 			Level levelManager = levelInstance.GetComponent<Level>();
@@ -68,6 +70,15 @@ public class GameSystemManager : MonoBehaviour
 			else {
 				Debug.LogError("no prediction manager found");
 			}
+		}
+
+		// setup enemy health display
+		Canvas canvas = FindObjectOfType<Canvas>();
+		var ballMotors = levelManager.GetComponentsInChildren<EnemyMotor>();
+		foreach (var ballMotor in ballMotors) {
+			var ballHp = ballMotor.GetComponent<HitPoint>();
+			var ui = Instantiate(enemyHitPointUi, canvas.transform);
+			ui.GetComponent<UI_HealthDisplay_Enemy>().Init(ballMotor.gameObject);
 		}
 	}
 
