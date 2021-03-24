@@ -5,22 +5,20 @@ using UnityEngine;
 public class GameSystemManager : MonoBehaviour
 {
 	public ARObjectPlacementController objectPlacementController;
-
     public GameObject levelToInstantiate;
-
 	public PlayerController playerController;
 	public UI_HealthDisplay healthDisplay;
 
 	[Header("Prefabs")]
 	public GameObject enemyHitPointUi;
 
-	PredictionManager predictionManager;
-
 	[Header("Debug")]
 	public OnScreenTextDebugger debugText;
 	public Level computerTestLevel;
 
-	bool levelPlaced = false;
+	PredictionManager predictionManager;
+	List<GameObject> enemyHpDisplays = new List<GameObject>();
+	bool isLevelInitialized = false;
 
 	private void Start() {
 		if (!debugText) {
@@ -29,33 +27,41 @@ public class GameSystemManager : MonoBehaviour
 		if (computerTestLevel) {
 			InitLevel(computerTestLevel);
 		}
-		
+	}
+
+	public void Awake() {
+		if (objectPlacementController && !computerTestLevel) {
+			objectPlacementController.objectToPlace = levelToInstantiate;
+		}
 	}
 
 
 	void PlaceLevel() {
-		if (levelPlaced) {
-			// TODO Remove and Replace level functions
 
-			debugText.Queue("Level already placed");
-			return;
-		}
-
-		GameObject levelInstance =  objectPlacementController.PlaceObjectScreenCenter(levelToInstantiate);
+		GameObject levelInstance =  objectPlacementController.PlaceObjectScreenCenter();
 		
 		if (levelInstance) {
-			levelPlaced = true;
-
 			Level levelManager = levelInstance.GetComponent<Level>();
-			InitLevel(levelManager);
+
+			if (!isLevelInitialized) {
+				InitLevel(levelManager);
+				Debug.Log("init level called");
+			}
+			else
+				ActiveLevel(true);
+		}
+		else {
+			ActiveLevel(false);
 		}
 	}
 
 
 	private void InitLevel(Level levelManager) {
 
+		// connect player controller to player motor
 		if (levelManager) {
 			playerController.playerMotor = levelManager.playerMotor;
+			playerController.Init();
 			if (healthDisplay)
 				healthDisplay.hitPointToTrack = levelManager.playerMotor.GetComponent<HitPoint>();
 		}
@@ -79,7 +85,23 @@ public class GameSystemManager : MonoBehaviour
 			var ballHp = ballMotor.GetComponent<HitPoint>();
 			var ui = Instantiate(enemyHitPointUi, canvas.transform);
 			ui.GetComponent<UI_HealthDisplay_Enemy>().Init(ballMotor.gameObject);
+			enemyHpDisplays.Add(ui);
 		}
+	}
+
+	// set an existing level active to state (must be called after init level is called
+	private void ActiveLevel(bool state) {
+		// set the script active state
+		playerController.enabled = state;
+		predictionManager.enabled = state;
+		enemyHpDisplays.ForEach(display => {
+			display.SetActive(state);
+		});
+		if (state == true) {
+			predictionManager.UpdateLevel();
+		}
+
+		// TODO: set UI animation
 	}
 
 	#region Unity Event References

@@ -16,7 +16,7 @@ public class HitPoint : MonoBehaviour
 
 	// change here to alter the damage taken when hit
 	static int trapDamage = 10;
-	static int playerDamage = 8; // damage on max speed, scaled down linearly to the current player speed
+	static int playerDamage = 5; // damage on max speed, scaled down linearly to the current player speed
 
 	public float GetHealthRatio() {
 		return (float) hitPoint / (float) hitPointMax;

@@ -10,6 +10,11 @@ public class UI_HealthDisplay : MonoBehaviour
 	public TMP_Text healthDisplayText;
 
 	public void Update() {
-		healthDisplayText.text = "Player HP: " + hitPointToTrack.hitPoint;
+		if (hitPointToTrack) {
+			healthDisplayText.text = "Player HP: " + hitPointToTrack.hitPoint;
+		}
+		else {
+			Debug.LogWarning("hitPointToTrack never assigned to this UI_HealthDisplay");
+		}
 	}
 }

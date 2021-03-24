@@ -8,7 +8,11 @@ public class UI_TrackToObj : MonoBehaviour
 
 	private void Update() {
 		if (target) {
-			var wantedPos = Camera.main.WorldToScreenPoint(target.position);
+			Camera cam = Camera.main;
+			if (!cam) {
+				cam = FindObjectOfType<Camera>();
+			}
+			var wantedPos = cam.WorldToScreenPoint(target.position);
 			transform.position = wantedPos;
 		}
 	}

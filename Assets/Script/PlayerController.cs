@@ -21,30 +21,20 @@ public class PlayerController : MonoBehaviour
 
 	PredictionManager predictionManager;
 
-	[Header("Debug")]
-	public OnScreenTextDebugger debugText;
 
 	Vector2 lastInput;
 	Vector3 lastCameraPosition;
 
-	private void Start() {
-		if (!debugText) {
-			debugText = FindObjectOfType<OnScreenTextDebugger>();
-		}
-		
+	public void Init() {
 		predictionManager = GetComponent<PredictionManager>();
 
 		playerMotor.maxSpeed = forceStrength;
 	}
 
 	private void Update() {
-		DebugWithText();
 		InputUpdate();
 	}
 
-	void DebugWithText() {
-		debugText.Queue("x: " + joystick.Vertical + ",  y: " + joystick.Horizontal);
-	}
 
 
 	public void InputUpdate() {
