@@ -38,7 +38,10 @@ public class BallMotor : MonoBehaviour
 		timeSinceMoved = toTime;
 	}
 	public float GetSpeedRatio() {
-		return rb.velocity.magnitude / maxSpeed;
+		//return rb.velocity.magnitude / maxSpeed;
+		if (HasStoppedMoving())
+			return 0;
+		else return Mathf.Clamp01((speedDownDuration-timeSinceMoved) / speedDownDuration);
 	}
 
 	public virtual bool HasStoppedMoving() {

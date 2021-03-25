@@ -59,9 +59,7 @@ public class ARObjectPlacementController : MonoBehaviour
 			// destory existing planes and disable ar plane tracking script
 			if (!planeManager)
 				planeManager = GetComponent<ARPlaneManager>();
-			foreach (var plane in planeManager.trackables) {
-				Destroy(plane.gameObject);
-			}
+			planeManager.SetTrackablesActive(false);
 			planeManager.enabled = false;
 
 			return levelInstance;

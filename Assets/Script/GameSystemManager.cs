@@ -58,6 +58,8 @@ public class GameSystemManager : MonoBehaviour
 
 	private void InitLevel(Level levelManager) {
 
+		isLevelInitialized = true;
+
 		// connect player controller to player motor
 		if (levelManager) {
 			playerController.playerMotor = levelManager.playerMotor;
@@ -97,6 +99,8 @@ public class GameSystemManager : MonoBehaviour
 		enemyHpDisplays.ForEach(display => {
 			display.SetActive(state);
 		});
+
+		predictionManager.doPredict = state;
 		if (state == true) {
 			predictionManager.UpdateLevel();
 		}

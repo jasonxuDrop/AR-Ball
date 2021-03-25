@@ -12,6 +12,7 @@ public class PredictionManager : MonoBehaviour
     public float similuatedBallScale = .85f;
 
     [HideInInspector] public Transform level;
+    [HideInInspector] public bool doPredict = true;
 
     Scene currentScene;
     Scene predictionScene;
@@ -39,6 +40,8 @@ public class PredictionManager : MonoBehaviour
 
 
     public void UpdateLevel() {
+        ClearPhysicScene();
+
         foreach (Transform t in level.transform) {
             if (t.GetComponent<PlayerMotor>())
                 continue;
@@ -67,10 +70,29 @@ public class PredictionManager : MonoBehaviour
                 if (simR) {
                     simR.enabled = false;
                 }
+				foreach (Renderer simChildR in simT.GetComponentsInChildren<Renderer>())
+				{
+                    simChildR.enabled = false;
+                }
                 SceneManager.MoveGameObjectToScene(simT, predictionScene);
                 similuatedObstacles.Add(simT);
             }
         }
+    }
+
+    // delete existing objects in physics scene
+    private void ClearPhysicScene()
+	{
+		similuatedObstacles.ForEach(obj => {
+            Destroy(obj);
+        });
+        similuatedDynamicObstacles.ForEach(obj => {
+            Destroy(obj);
+        });
+
+        similuatedObstacles = new List<GameObject>();
+        similuatedDynamicObstacles = new List<GameObject>();
+        dynamicObstacles = new List<GameObject>();
     }
 
     public void UpdateDynamicObsticles() {
@@ -93,7 +115,7 @@ public class PredictionManager : MonoBehaviour
 	}
 
     public void Predict(GameObject subject, Vector3 currentPosition, Vector3 force) {
-        if (currentPhysicsScene.IsValid() && predictionPhysicsScene.IsValid()) {
+        if (doPredict && currentPhysicsScene.IsValid() && predictionPhysicsScene.IsValid()) {
 
             UpdateDynamicObsticles();
 

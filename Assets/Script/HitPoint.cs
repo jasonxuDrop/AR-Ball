@@ -27,7 +27,7 @@ public class HitPoint : MonoBehaviour
 
 	private void Update() {
 		if (timeSinceDamageTaken >= respawnDelay) {
-			transform.position = respawnLocation;
+			transform.localPosition = respawnLocation;
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
 
 
@@ -65,7 +65,7 @@ public class HitPoint : MonoBehaviour
 	}
 
 	public void Awake() {
-		respawnLocation = transform.position;
+		SetSpawnLocation(transform.localPosition);
 		hitPointMax = hitPoint;
 	}
 
