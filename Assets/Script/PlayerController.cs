@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
 
 	public void InputUpdate() {
 
-		bool canMovePlayer = (playerMotor && playerMotor.HasStoppedMoving());
+		bool canMovePlayer = (playerMotor && playerMotor.HasStoppedMoving()
+			);
 		if (!canMovePlayer) {
 			//print(playerMotor.HasStoppedMoving());
 			return;
