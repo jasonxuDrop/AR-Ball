@@ -857,7 +857,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-370920
+  m_Name: pb_Mesh-1588
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1021,7 +1021,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-370908
+  m_Name: pb_Mesh-1576
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1312,6 +1312,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590006710}
   m_CullTransparentMesh: 1
+--- !u!114 &635073311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5414242123821665487, guid: 7becb3c77d08f3a4b88d87cdd56a05f2, type: 3}
+  m_PrefabInstance: {fileID: 1778608787}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfac81621e844b0409ea82f0b1bf650b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &669964918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,10 +1357,10 @@ MonoBehaviour:
   objectPlacementController: {fileID: 0}
   levelToInstantiate: {fileID: 3536303376876616658, guid: bd0ce6daea4e9ab489e3822a24e8d102, type: 3}
   playerController: {fileID: 669964921}
-  healthDisplay: {fileID: 0}
+  healthDisplay: {fileID: 2067868787}
   enemyHitPointUi: {fileID: 3731967206681598280, guid: 6ee5a0ffe6c1efd4b8a012d360becd8a, type: 3}
   debugText: {fileID: 2036479308}
-  computerTestLevel: {fileID: 0}
+  computerTestLevel: {fileID: 635073311}
 --- !u!4 &669964920
 Transform:
   m_ObjectHideFlags: 0
@@ -1376,13 +1387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dccccf4e3c71e4042880483f4a125c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceStrength: 1
+  forceStrength: 1.5
   cancelMaxDistanceSqr: 0.25
   highAngleProtection: 0.1
   cameraTransform: {fileID: 1311327983}
   joystick: {fileID: 113960166}
   playerMotor: {fileID: 0}
-  debugText: {fileID: 2036479308}
 --- !u!114 &669964922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1401,6 +1411,7 @@ MonoBehaviour:
   lineYOffset: 0.03
   similuatedBallScale: 0.85
   level: {fileID: 0}
+  doPredict: 1
 --- !u!850595691 &891789198
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -2093,7 +2104,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-370806
+  m_Name: pb_Mesh-1474
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2257,7 +2268,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-370896
+  m_Name: pb_Mesh-1564
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2569,6 +2580,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1943111932}
+    - target: {fileID: 5414242123821665487, guid: 7becb3c77d08f3a4b88d87cdd56a05f2, type: 3}
+      propertyPath: isComputerOnlyTestLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5983431742968430883, guid: 7becb3c77d08f3a4b88d87cdd56a05f2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2703,7 +2718,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-371320
+  m_Name: pb_Mesh-1988
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
