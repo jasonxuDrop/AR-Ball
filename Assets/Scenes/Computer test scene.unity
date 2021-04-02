@@ -820,6 +820,8 @@ MonoBehaviour:
   objectPlacementController: {fileID: 0}
   levelToInstantiate: {fileID: 3536303376876616658, guid: bd0ce6daea4e9ab489e3822a24e8d102, type: 3}
   playerController: {fileID: 669964921}
+  healthDisplay: {fileID: 0}
+  enemyHitPointUi: {fileID: 0}
   debugText: {fileID: 2036479308}
   computerTestLevel: {fileID: 5414242123821665487, guid: ffd9e5bb36e081e4085237e9149e947f, type: 3}
 --- !u!4 &669964920
@@ -854,7 +856,6 @@ MonoBehaviour:
   cameraTransform: {fileID: 1311327983}
   joystick: {fileID: 113960166}
   playerMotor: {fileID: 0}
-  debugText: {fileID: 2036479308}
 --- !u!114 &669964922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,7 +872,9 @@ MonoBehaviour:
   steps: 0.025
   lineRenderer: {fileID: 83702978}
   lineYOffset: 0.03
+  similuatedBallScale: 0.85
   level: {fileID: 0}
+  doPredict: 1
 --- !u!1001 &1125359926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1058,7 +1061,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-223820
+  m_Name: pb_Mesh-8618
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1222,7 +1225,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-223796
+  m_Name: pb_Mesh-8594
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1554,7 +1557,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-223808
+  m_Name: pb_Mesh-8606
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
