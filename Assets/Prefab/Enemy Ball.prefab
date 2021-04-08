@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eccc8da17586f154a94e5b86ccde47c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 0.15
+  gravityScale: 0.16
   speedDownCurve:
     serializedVersion: 2
     m_Curve:

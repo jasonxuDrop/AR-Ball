@@ -7,13 +7,20 @@ public class UI_HealthDisplay : MonoBehaviour
 {
     [HideInInspector] public HitPoint hitPointToTrack;
 
-	public TMP_Text healthDisplayText;
+	public Transform[] hitPointImages;
 
 	public void Update() {
-		if (hitPointToTrack) {
-			healthDisplayText.text = "Player HP: " + hitPointToTrack.hitPoint;
+
+		if (hitPointToTrack && hitPointImages.Length > 0)
+		{
+			int barCount = Mathf.FloorToInt((hitPointToTrack.hitPoint / hitPointToTrack.hitPointMax) * hitPointImages.Length + 0.1f);
+			for (int i = 0; i < hitPointImages.Length; i++)
+			{
+				hitPointImages[i].gameObject.SetActive(i < barCount);
+			}
 		}
-		else {
+		else
+		{
 			Debug.LogWarning("hitPointToTrack never assigned to this UI_HealthDisplay");
 		}
 	}
