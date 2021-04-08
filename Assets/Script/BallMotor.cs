@@ -74,6 +74,10 @@ public class BallMotor : MonoBehaviour
 			rb.velocity = toVelocity;
 		}
 	}
+	private void OnCollisionExit(Collision collision)
+	{
+	}
+
 
 	public void ApplyGravity() {
 		Vector3 gravity = -9.81f * gravityScale * Vector3.up;

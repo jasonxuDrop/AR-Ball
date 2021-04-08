@@ -5,27 +5,33 @@ using UnityEngine.XR.ARFoundation;
 
 public class GameSystemManager : MonoBehaviour
 {
-	public ARObjectPlacementController objectPlacementController;
-    public GameObject levelToInstantiate;
 	public PlayerController playerController;
 	public UI_HealthDisplay healthDisplay;
-	public float contentScale = 1f; // the inverted scale the the game object appears to be at
+	// the inverted scale the the game object appears to be at
+	public float contentScale = 1f; 
 	public float minScale = 1;
 	public float maxScale = 5;
+
+	[Header("Set on Awake")]
+	public GameObject levelToInstantiate;
 
 	[Header("Prefabs")]
 	public GameObject enemyHitPointUi;
 
-	[Header("AR")]
+	[Header("AR only")]
+	public ARObjectPlacementController objectPlacementController;
 	public Transform arRootObject;
 	public ARSessionOrigin arSessionOrigin; 
 
-	[Header("Debug")]
+	[Header("Debug only")]
 	public OnScreenTextDebugger debugText;
 	public Level computerTestLevel;
 
+	// private variables
 	PredictionManager predictionManager;
+	List<HitPoint> enemyHitPoints = new List<HitPoint>();
 	List<GameObject> enemyHpDisplays = new List<GameObject>();
+	bool isLevelAssignedByLevelManager = false;
 	bool isLevelInitialized = false;
 
 	private void Start() {
@@ -38,11 +44,27 @@ public class GameSystemManager : MonoBehaviour
 	}
 
 	public void Awake() {
-		if (objectPlacementController && !computerTestLevel) {
+		if (isLevelAssignedByLevelManager)
+			return;
+
+		if (objectPlacementController && !computerTestLevel)
+		{
 			objectPlacementController.objectToPlace = levelToInstantiate;
 		}
 	}
 
+	// called by level manager when scene reloads to restart the level. 
+	public void ChangeLevel(GameObject newLevelToInstantiate)
+	{
+		isLevelAssignedByLevelManager = true;
+
+		levelToInstantiate = newLevelToInstantiate;
+
+		if (objectPlacementController && !computerTestLevel)
+		{
+			objectPlacementController.objectToPlace = levelToInstantiate;
+		}
+	}
 
 	void PlaceLevel() {
 
@@ -92,10 +114,12 @@ public class GameSystemManager : MonoBehaviour
 		Canvas canvas = FindObjectOfType<Canvas>();
 		var ballMotors = levelManager.GetComponentsInChildren<EnemyMotor>();
 		foreach (var ballMotor in ballMotors) {
-			var ballHp = ballMotor.GetComponent<HitPoint>();
 			var ui = Instantiate(enemyHitPointUi, canvas.transform);
 			ui.GetComponent<UI_HealthDisplay_Enemy>().Init(ballMotor.gameObject);
 			enemyHpDisplays.Add(ui);
+
+			var ballHp = ballMotor.GetComponent<HitPoint>();
+			enemyHitPoints.Add(ballHp);
 		}
 	}
 
@@ -119,17 +143,36 @@ public class GameSystemManager : MonoBehaviour
 	// TODO make function to funk with the scale of AR Session Origin
 	public void ChangeContentScale()
 	{
-		if (arRootObject && arSessionOrigin)
+		var level = FindObjectOfType<Level>();
+		if (!arRootObject || !arSessionOrigin)
 		{
-			var levelObject = FindObjectOfType<Level>().transform;
+			Debug.LogWarning("No ARRootObject Assigned");
+		}
+		else if (!level)
+		{
+			Debug.LogWarning("No level in the scene");
+		}
+		else
+		{
+			var levelObject = level.transform;
 			arSessionOrigin.MakeContentAppearAt(
 				levelObject, levelObject.transform.position);
 			arRootObject.transform.localScale = new Vector3(contentScale, contentScale, contentScale);
 		}
-		else
+	}
+
+	// returns true if all enemies are destroyed
+	public bool IsAllEnemyDestroyed()
+	{
+		if (!isLevelInitialized)
+			return false;
+
+		foreach (var enemyHp in enemyHitPoints)
 		{
-			Debug.LogWarning("No ARRootObject Assigned");
+			if (!enemyHp.IsDead())
+				return false;
 		}
+		return true;
 	}
 
 
