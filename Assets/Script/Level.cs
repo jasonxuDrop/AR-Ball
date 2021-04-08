@@ -7,6 +7,10 @@ public class Level : MonoBehaviour
     public PlayerMotor playerMotor;
     public Transform placementIndicator;
 
+	[Header("Player Attack Damage")]
+	public bool doOverridePlayerAttackDamage = false;
+	public int newPlayerDamage = 5;
+
 	[Header("Debug")]
 	public bool isComputerOnlyTestLevel = false;
 
@@ -23,6 +27,11 @@ public class Level : MonoBehaviour
 		}
 		else {
 			ShowIndicator();
+		}
+
+		if (doOverridePlayerAttackDamage)
+		{
+			HitPoint.SetPlayerDamage(newPlayerDamage);
 		}
 	}
 

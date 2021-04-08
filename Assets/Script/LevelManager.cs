@@ -79,10 +79,10 @@ public class LevelManager : MonoBehaviour
 	#region Unity Event References
 
 	// Trigged when the next level button event is pressed. 
-	public void LoadNextLevel()
+	public static void LoadNextLevel()
 	{
 		Debug.Log("LoadNextLevel");
-		currentLevel++;
+		instance.currentLevel++;
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 

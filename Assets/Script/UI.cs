@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
+	public Animator hudAnimator;
 	public Animator winScreenAnimator;
 }

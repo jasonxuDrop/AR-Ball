@@ -999,6 +999,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMotor: {fileID: 1792444707727949591}
   placementIndicator: {fileID: 7945465186394812628}
+  doOverridePlayerAttackDamage: 1
+  newPlayerDamage: 3
   isComputerOnlyTestLevel: 0
 --- !u!1 &2715786335209131206
 GameObject:

@@ -185,9 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5036646638a333648907661678ebd5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerBall: 0
+  isPlayerBall: 1
   hitPoint: 30
-  respawnDelay: 3
+  respawnDelay: 0.6
   hitPointMax: 0
 --- !u!114 &4089106740743044622
 MonoBehaviour:

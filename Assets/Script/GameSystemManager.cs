@@ -114,13 +114,17 @@ public class GameSystemManager : MonoBehaviour
 		Canvas canvas = FindObjectOfType<Canvas>();
 		var ballMotors = levelManager.GetComponentsInChildren<EnemyMotor>();
 		foreach (var ballMotor in ballMotors) {
-			var ui = Instantiate(enemyHitPointUi, canvas.transform);
-			ui.GetComponent<UI_HealthDisplay_Enemy>().Init(ballMotor.gameObject);
-			enemyHpDisplays.Add(ui);
+			var enemyHpUi = Instantiate(enemyHitPointUi, canvas.transform);
+			enemyHpUi.GetComponent<UI_HealthDisplay_Enemy>().Init(ballMotor.gameObject);
+			enemyHpDisplays.Add(enemyHpUi);
 
 			var ballHp = ballMotor.GetComponent<HitPoint>();
 			enemyHitPoints.Add(ballHp);
 		}
+
+		// UI animation
+		var ui = FindObjectOfType<UI>();
+		ui.hudAnimator.SetBool("isPlayMode", true);
 	}
 
 	// set an existing level active to state (must be called after init level is called
@@ -137,7 +141,9 @@ public class GameSystemManager : MonoBehaviour
 			predictionManager.UpdateLevel();
 		}
 
-		// TODO: set UI animation
+		// UI animation
+		var ui = FindObjectOfType<UI>();
+		ui.hudAnimator.SetBool("isPlayMode", state);
 	}
 
 	// TODO make function to funk with the scale of AR Session Origin

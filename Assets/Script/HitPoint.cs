@@ -12,11 +12,12 @@ public class HitPoint : MonoBehaviour
 	[HideInInspector] public int hitPointMax;
 	protected float timeSinceDamageTaken = -1f;
 
+	// local position vector3
     Vector3 respawnLocation;
 
 	// change here to alter the damage taken when hit
 	static int trapDamage = 10;
-	static int playerDamage = 5; // damage on max speed, scaled down linearly to the current player speed
+	static int playerDamage = 5; // damage on max speed, scaled down *linearly* to the current player speed
 
 	public float GetHealthRatio() {
 		return (float) hitPoint / (float) hitPointMax;
@@ -71,5 +72,10 @@ public class HitPoint : MonoBehaviour
 
 	public void SetSpawnLocation(Vector3 newLocation) {
 		respawnLocation = newLocation;
+	}
+
+	public static void SetPlayerDamage(int newPlayerDamage)
+	{
+		playerDamage = newPlayerDamage;
 	}
 }
