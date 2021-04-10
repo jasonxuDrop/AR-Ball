@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 6086288551044630521}
   - component: {fileID: 5414242123821665487}
   m_Layer: 0
-  m_Name: Tutorial
+  m_Name: 0 Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,6 +541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMotor: {fileID: 1792444707727949591}
   placementIndicator: {fileID: 7945465186394812628}
+  doOverridePlayerAttackDamage: 0
+  newPlayerDamage: 5
   isComputerOnlyTestLevel: 0
 --- !u!1 &3401116269309636652
 GameObject:
@@ -1002,7 +1004,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: c5b3482a4df266d49af3a8f742513c2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

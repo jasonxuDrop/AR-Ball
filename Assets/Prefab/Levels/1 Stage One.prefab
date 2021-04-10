@@ -582,6 +582,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMotor: {fileID: 1792444707727949591}
   placementIndicator: {fileID: 7945465186394812628}
+  doOverridePlayerAttackDamage: 0
+  newPlayerDamage: 5
   isComputerOnlyTestLevel: 0
 --- !u!1 &2998574419396199208
 GameObject:
@@ -1131,7 +1133,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: c5b3482a4df266d49af3a8f742513c2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
