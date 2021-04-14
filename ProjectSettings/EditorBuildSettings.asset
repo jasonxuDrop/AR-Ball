@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/earlier versions/AR 2 with prototype level.unity
-    guid: 71d21f81d7b01d24498ad19215c0efff
+  - enabled: 1
+    path: Assets/Scenes/Start Menu.unity
+    guid: f5516497bb22f8744be1d6293b2e5cb2
   - enabled: 1
     path: Assets/Scenes/AR 4 - Level with new UI.unity
     guid: 56857fe8fbfe4e54f8bac0628c576dbf
