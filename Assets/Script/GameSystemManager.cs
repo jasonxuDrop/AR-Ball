@@ -180,6 +180,13 @@ public class GameSystemManager : MonoBehaviour
 		}
 		return true;
 	}
+	public bool IsPlayerDestroyed()
+	{
+		if (!isLevelInitialized)
+			return false;
+
+		return playerController.GetComponent<HitPoint>().IsDead();
+	}
 
 
 	#region Unity Event References

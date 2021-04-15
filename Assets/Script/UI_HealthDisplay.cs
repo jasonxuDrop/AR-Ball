@@ -24,5 +24,6 @@ public class UI_HealthDisplay : MonoBehaviour
 		{
 			Debug.LogWarning("hitPointToTrack never assigned to this UI_HealthDisplay");
 		}
+
 	}
 }

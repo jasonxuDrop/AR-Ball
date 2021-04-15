@@ -1466,6 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3583a97434d902a4fa601ee3bf39b937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSceneName: AR 4 - Level with new UI
   levels:
   - {fileID: 2622301693638759182, guid: b7dea95ebc408c8428d6b860c93edb93, type: 3}
   - {fileID: 2622301693638759182, guid: 2e7000ad132146f4ebdd28508898f015, type: 3}
