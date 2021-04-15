@@ -6,4 +6,5 @@ public class UI : MonoBehaviour
 {
 	public Animator hudAnimator;
 	public Animator winScreenAnimator;
+	public Animator deathScreenAnimator;
 }

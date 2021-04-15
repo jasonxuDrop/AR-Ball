@@ -31,6 +31,7 @@ public class GameSystemManager : MonoBehaviour
 	PredictionManager predictionManager;
 	List<HitPoint> enemyHitPoints = new List<HitPoint>();
 	List<GameObject> enemyHpDisplays = new List<GameObject>();
+	HitPoint playerHp;
 	bool isLevelAssignedByLevelManager = false;
 	bool isLevelInitialized = false;
 
@@ -96,6 +97,7 @@ public class GameSystemManager : MonoBehaviour
 			playerController.Init();
 			if (healthDisplay)
 				healthDisplay.hitPointToTrack = levelManager.playerMotor.GetComponent<HitPoint>();
+			playerHp = levelManager.playerMotor.GetComponent<HitPoint>();
 		}
 
 		// setup prediction manager
@@ -185,7 +187,7 @@ public class GameSystemManager : MonoBehaviour
 		if (!isLevelInitialized)
 			return false;
 
-		return playerController.GetComponent<HitPoint>().IsDead();
+		return playerHp.GetComponent<HitPoint>().IsDead();
 	}
 
 

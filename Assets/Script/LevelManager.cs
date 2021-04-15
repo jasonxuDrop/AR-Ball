@@ -67,8 +67,8 @@ public class LevelManager : MonoBehaviour
 		else if (gameSystemManager.IsPlayerDestroyed())
 		{
 			// TODO prompt end level UI
-			Debug.Log("all enemy destroyed, showing the End screen UI");
-			// ui.deathScreenAnimator.SetTrigger("In");
+			Debug.Log("player died, showing the death screen UI");
+			ui.deathScreenAnimator.SetBool("In", true);
 		}
 	}
 
