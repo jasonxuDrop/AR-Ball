@@ -12,6 +12,10 @@ public class LevelManager : MonoBehaviour
 	// TODO: change to using addressables so not all levels are loaded at once. 
 	public int currentLevel;
 
+	[Header("Level Light")]
+	public bool doAddLight = false;
+	public GameObject lightPrefab;
+
 	UI ui;
 	GameSystemManager gameSystemManager;
 
@@ -94,6 +98,10 @@ public class LevelManager : MonoBehaviour
 	private void OnSceneLoaded(Scene aScene, LoadSceneMode aMode)
 	{
 		Reset();
+		if (doAddLight)
+		{
+			Instantiate(lightPrefab);
+		}
 	}
 
 	#region Unity Event References
@@ -101,27 +109,34 @@ public class LevelManager : MonoBehaviour
 	// Trigged when the next level button event is pressed. 
 	public static void LoadNextLevel()
 	{
+		instance.doAddLight = true;
+
 		Debug.Log("Load Next Level");
 		instance.currentLevel++;
 		SceneManager.LoadScene(instance.gameSceneName);
 	}
 	public static void LoadThisLevel()
 	{
+		instance.doAddLight = true;
+
 		Debug.Log("Load This Level");
 		SceneManager.LoadScene(instance.gameSceneName);
 	}
 	public static void LoadLevelN(int n)
 	{
+		instance.doAddLight = true;
+
 		Debug.Log("Load " + n + "th Level");
 		instance.currentLevel = n;
 		SceneManager.LoadScene(instance.gameSceneName);
 	}
 	public static void LoadStartLevel()
 	{
+		instance.doAddLight = false;
+
 		Debug.Log("Load Start Level (first scene in build index)");
 		SceneManager.LoadScene(0);
 	}
-
 
 	#endregion
 }
