@@ -42,6 +42,7 @@ public class GameSystemManager : MonoBehaviour
 		if (computerTestLevel) {
 			InitLevel(computerTestLevel);
 		}
+		ChangeContentScale();
 	}
 
 	public void Awake() {

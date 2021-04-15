@@ -112,9 +112,14 @@ public class LevelManager : MonoBehaviour
 	}
 	public static void LoadLevelN(int n)
 	{
-		Debug.Log("Load This Level");
+		Debug.Log("Load " + n + "th Level");
 		instance.currentLevel = n;
 		SceneManager.LoadScene(instance.gameSceneName);
+	}
+	public static void LoadStartLevel()
+	{
+		Debug.Log("Load Start Level (first scene in build index)");
+		SceneManager.LoadScene(0);
 	}
 
 
