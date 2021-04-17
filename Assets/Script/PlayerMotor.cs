@@ -6,6 +6,7 @@ public class PlayerMotor : BallMotor
 {
 	// for line renderer only
 	[HideInInspector] public bool breakSimulation = false;
+	
 
 
 	//public void Move(Vector2 force) {
@@ -25,7 +26,7 @@ public class PlayerMotor : BallMotor
 	protected override void OnCollisionEnter(Collision collision) {
 		base.OnCollisionEnter(collision);
 
-		if (collision.gameObject.tag == "Wall") {
+		if (collision.gameObject.tag == "Wall" && frameCountBeforeSimulationBreak <= 0) {
 			breakSimulation = true;
 		}
 		// if ramming into enemy

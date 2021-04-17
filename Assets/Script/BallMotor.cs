@@ -15,6 +15,9 @@ public class BallMotor : MonoBehaviour
 	protected bool updateVelocity;
 	protected Vector3 toVelocity = new Vector3();
 
+	[HideInInspector] public float frameCountBeforeSimulationBreak = 0; // updated in prediction line manager only
+
+
 	private void Awake() {
 		if (!rb) {
 			rb = GetComponent<Rigidbody>();
@@ -66,7 +69,7 @@ public class BallMotor : MonoBehaviour
 	}
 
 	protected virtual void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.tag == "Wall") {
+		if (collision.gameObject.tag == "Wall" && frameCountBeforeSimulationBreak == 0) {
 			var contact = collision.GetContact(0);
 
 			// try to change the velocity directly

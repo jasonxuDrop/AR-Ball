@@ -204,7 +204,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-342982
+  m_Name: pb_Mesh-3320
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -362,6 +362,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &99591133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 27048263032506978, guid: 589dcc6041d146d40a1080e0c4554155, type: 3}
+  m_PrefabInstance: {fileID: 1067859599}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &113960164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -469,7 +474,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
   m_PrefabInstance: {fileID: 113960164}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 297742317}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
@@ -758,10 +763,10 @@ RectTransform:
   m_Father: {fileID: 789616854}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -180}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &188989243
 MonoBehaviour:
@@ -1015,6 +1020,11 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &297742317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773939, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+  m_PrefabInstance: {fileID: 113960164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &402807935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1246,7 @@ MonoBehaviour:
   steps: 0.025
   lineRenderer: {fileID: 1725595157}
   lineYOffset: 0
-  similuatedBallScale: 0.85
+  similuatedBallScale: 1
   level: {fileID: 0}
   doPredict: 1
 --- !u!43 &709335190
@@ -1245,7 +1255,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-342892
+  m_Name: pb_Mesh-3230
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1409,7 +1419,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-343006
+  m_Name: pb_Mesh-3344
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1577,7 +1587,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2172946001620134966, guid: 589dcc6041d146d40a1080e0c4554155, type: 3}
   m_PrefabInstance: {fileID: 1067859599}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 99591133}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e7f345cca8a63e4990815d4b986d07c, type: 3}
@@ -1722,10 +1732,10 @@ RectTransform:
   m_Father: {fileID: 789616854}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -310}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &792187800
 MonoBehaviour:
@@ -1969,8 +1979,8 @@ RectTransform:
   m_Father: {fileID: 1642348694}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2975, y: 0}
-  m_AnchorMax: {x: 0.2975, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 39.5632, y: 19.5632}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2802,7 +2812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1725093374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3064,6 +3074,7 @@ GameObject:
   - component: {fileID: 1774910290}
   - component: {fileID: 1774910289}
   - component: {fileID: 1774910288}
+  - component: {fileID: 1774910291}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -3134,9 +3145,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameSystemManager, Assembly-CSharp
-        m_MethodName: PlaceLevelButtonPressed
+      - m_Target: {fileID: 1774910291}
+        m_TargetAssemblyTypeName: UI_HideUIButton, Assembly-CSharp
+        m_MethodName: HideUIToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3159,7 +3170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3184,6 +3195,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774910286}
   m_CullTransparentMesh: 1
+--- !u!114 &1774910291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774910286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a76dbbf639fe6d4e809a8b4f1f4d068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToHide:
+  - {fileID: 297742317}
+  - {fileID: 99591133}
+  - {fileID: 147246350}
+  - {fileID: 156693813}
 --- !u!1 &1834832607
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,7 +3362,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-342994
+  m_Name: pb_Mesh-3332
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3592,10 +3620,10 @@ RectTransform:
   m_Father: {fileID: 789616854}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -50}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1850000244
 MonoBehaviour:
@@ -3772,7 +3800,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-343462
+  m_Name: pb_Mesh-3728
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4144,8 +4172,8 @@ RectTransform:
   m_Father: {fileID: 286627874}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2975, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

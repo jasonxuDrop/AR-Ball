@@ -127,6 +127,7 @@ public class PredictionManager : MonoBehaviour
 
             similuatedObject.transform.position = currentPosition;
             similuatedObject.transform.localScale *= similuatedBallScale;
+            similuatedObject.GetComponent<PlayerMotor>().frameCountBeforeSimulationBreak = 1;
             similuatedObject.GetComponent<PlayerMotor>().Move(force*2f);
             lineRenderer.positionCount = 0;
             lineRenderer.positionCount = maxIterations;
@@ -135,6 +136,7 @@ public class PredictionManager : MonoBehaviour
             for (int i = 0; i < maxIterations; i++) {
                 if (i>0) {
                     predictionPhysicsScene.Simulate(steps);
+                    similuatedObject.GetComponent<PlayerMotor>().frameCountBeforeSimulationBreak--;
                     similuatedObject.GetComponent<PlayerMotor>().ApplyGravity();
 
                     if (similuatedObject.GetComponent<PlayerMotor>().breakSimulation) {
