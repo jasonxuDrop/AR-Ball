@@ -27,6 +27,7 @@ public class ARObjectPlacementController : MonoBehaviour
 	public void Start() {
 		levelInstance = Instantiate(objectToPlace);
 		isPlacementMode = true;
+		FindObjectOfType<GameSystemManager>().ChangeContentScale();
 	}
 	public void Update() {
 
