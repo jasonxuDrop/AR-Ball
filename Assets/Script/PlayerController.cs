@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 	public PlayerMotor playerMotor;
 
 	PredictionManager predictionManager;
+	public UI_ForceIndicator forceIndicator;
 
 
 	Vector2 lastInput;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
 	public void Init() {
 		predictionManager = GetComponent<PredictionManager>();
+		if (!forceIndicator) 
+			forceIndicator = FindObjectOfType<UI_ForceIndicator>();
 
 		playerMotor.maxSpeed = forceStrength;
 	}
@@ -59,6 +62,8 @@ public class PlayerController : MonoBehaviour
 			bool doRelease = (inputHorizontal == 0 && inputVertical == 0 &&
 				!(Mathf.Abs(lastInput.SqrMagnitude()) < cancelMaxDistanceSqr));
 
+			Vector3 input = new Vector3(inputHorizontal, inputVertical);
+			forceIndicator.ChangeForceDisplay(input.magnitude);
 
 			// NEW WAY OF MOVING PLAYER
 			// generate a vector 2 from input. 
@@ -74,7 +79,7 @@ public class PlayerController : MonoBehaviour
 			moveForce3d.Normalize();
 
 			// scale movement
-			moveForce3d *= lastInput.SqrMagnitude();
+			moveForce3d *= lastInput.magnitude;
 			//Debug.Log("Move Force (flat and scaled): " + moveForce3d);
 
 			// scale movement to force amount
@@ -93,6 +98,7 @@ public class PlayerController : MonoBehaviour
 				&& (inputHorizontal != 0 || inputVertical != 0)
 				&& ((inputHorizontal != lastInput.x || inputVertical != lastInput.y)
 					|| (Vector3.SqrMagnitude(lastCameraPosition - cameraTransform.position) < 0.001f)) ) {
+
 				//print("called predict");
 				predictionManager.Predict(playerMotor.gameObject, playerMotor.transform.position, moveForce3d);
 			}
