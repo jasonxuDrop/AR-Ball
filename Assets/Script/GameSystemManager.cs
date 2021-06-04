@@ -109,7 +109,7 @@ public class GameSystemManager : MonoBehaviour
 				predictionManager.UpdateLevel();
 			}
 			else {
-				Debug.LogError("no prediction manager found");
+				//Debug.LogError("no prediction manager found");
 			}
 		}
 
