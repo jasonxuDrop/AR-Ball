@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 	Vector2 lastInput;
 	Vector3 lastCameraPosition;
 
+	[HideInInspector] public bool isTurn = false;
+	bool watchForMotorStop = false;
 
 	// init is called by Game System manager as a late Start function
 	public void Init() {
@@ -44,11 +46,23 @@ public class PlayerController : MonoBehaviour
 
 	public void InputUpdate() {
 
+		// WATCH FOR END TURN (has fired and has stopped)
+		if (watchForMotorStop && playerMotor.HasStoppedMoving())
+		{
+			print("player stopped moving????");
+			// END TURN
+			isTurn = false;
+			watchForMotorStop = false;
+		}
+		
+		// if motor still moving, skip code
 		bool canMovePlayer = (playerMotor && playerMotor.HasStoppedMoving());
-		if (!canMovePlayer) {
+		if (!canMovePlayer || !isTurn) {
 			//print(playerMotor.HasStoppedMoving());
 			return;
 		}
+
+		
 
 		Vector3 moveForce3d;
 
@@ -90,6 +104,10 @@ public class PlayerController : MonoBehaviour
 
 				Vector3 moveForceNormalized = moveForce3d;
 
+				// VISUALIZE movement
+				movementVisualizer.Visualize(playerMotor.transform.position, moveForceNormalized);
+
+				// PLAYER FIRES
 				if (doRelease) {
 					// scale movement
 					moveForce3d *= lastInput.magnitude;
@@ -97,12 +115,12 @@ public class PlayerController : MonoBehaviour
 					moveForce3d *= forceStrength;
 
 					playerMotor.Move(moveForce3d);
+					watchForMotorStop = true;
+					movementVisualizer.Clear();
 				}
 
 
-				// VISUALIZE movement
-
-				movementVisualizer.Visualize(playerMotor.transform.position, moveForceNormalized);
+				
 				//Debug.DrawRay(playerMotor.transform.position, moveForceNormalized * 10, Color.green);
 			}
 			else
@@ -115,5 +133,10 @@ public class PlayerController : MonoBehaviour
 			lastCameraPosition = cameraTransform.position;
 		}
 
+	}
+
+	public void StartTurn()
+	{
+		isTurn = true;
 	}
 }
