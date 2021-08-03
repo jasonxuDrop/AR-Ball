@@ -6,7 +6,7 @@ using UnityEngine.XR.ARFoundation;
 public class GameSystemManager : MonoBehaviour
 {
 	public PlayerController playerController;
-	public UI_HealthDisplay healthDisplay;
+	public UI_PlayerHealthDisplay healthDisplay;
 	// the inverted scale the the game object appears to be at
 	public float contentScale = 1f; 
 	public float minScale = 1;
@@ -118,7 +118,7 @@ public class GameSystemManager : MonoBehaviour
 		var ballMotors = levelManager.GetComponentsInChildren<EnemyMotor>();
 		foreach (var ballMotor in ballMotors) {
 			var enemyHpUi = Instantiate(enemyHitPointUi, canvas.transform);
-			enemyHpUi.GetComponent<UI_HealthDisplay_Enemy>().Init(ballMotor.gameObject);
+			enemyHpUi.GetComponent<UI_EnemyHealthDisplay>().Init(ballMotor.gameObject);
 			enemyHpDisplays.Add(enemyHpUi);
 
 			var ballHp = ballMotor.GetComponent<HitPoint>();

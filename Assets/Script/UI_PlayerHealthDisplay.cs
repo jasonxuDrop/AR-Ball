@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UI_HealthDisplay : MonoBehaviour
+public class UI_PlayerHealthDisplay : MonoBehaviour
 {
     [HideInInspector] public HitPoint hitPointToTrack;
 

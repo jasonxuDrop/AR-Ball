@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_HealthDisplay_Enemy : MonoBehaviour
+public class UI_EnemyHealthDisplay : MonoBehaviour
 {
     UI_TrackToObj objectTracker;
     Animator animator;

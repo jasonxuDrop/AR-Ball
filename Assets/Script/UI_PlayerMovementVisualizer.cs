@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementVisualizer : MonoBehaviour
+public class UI_PlayerMovementVisualizer : MonoBehaviour
 {
 	public MeshFilter directionLineMeshFilter;
 	public Transform hitIndicator;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_ForceIndicator : MonoBehaviour
+public class UI_PlayerForceVisualizer : MonoBehaviour
 {
     public List<Sprite> frames;
 

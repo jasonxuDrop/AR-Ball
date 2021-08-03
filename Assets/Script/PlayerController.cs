@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
 
 	[HideInInspector]
 	public PlayerMotor playerMotor;
-	public PlayerMovementVisualizer movementVisualizer;
+	public UI_PlayerMovementVisualizer movementVisualizer;
 
-	public UI_ForceIndicator forceIndicator;
+	public UI_PlayerForceVisualizer forceIndicator;
 
 	Vector2 lastInput;
 	Vector3 lastCameraPosition;
@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour
 	// init is called by Game System manager as a late Start function
 	public void Init() {
 		if (!forceIndicator) 
-			forceIndicator = FindObjectOfType<UI_ForceIndicator>();
+			forceIndicator = FindObjectOfType<UI_PlayerForceVisualizer>();
 		if (!movementVisualizer)
-			movementVisualizer = GetComponent<PlayerMovementVisualizer>();
+			movementVisualizer = GetComponent<UI_PlayerMovementVisualizer>();
 
 		playerMotor.maxSpeed = forceStrength;
 	}
